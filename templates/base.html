@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Flask</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('careers') }}">Careers</a></li>
+            <!-- das für etwas aus, dass , man sehn kann -->
+    </nav>
+
+
+    {% block content %}
+    {% endblock %}
+    <!-- The difference between the percent sign and the double curly bracket notation that we've
+used before, is that the double curly brackets contain an 'expression', which is outputting
+something either onto the screen, or in this case, into our href.
+The curly bracket and percentage are for statements that control the flow of our template, such
+as a for-loop, if-statement, or this block element. -->
+<!-- das fürht etwas funktionelles aus -->
+<body>
+    
+</body>
+</html>
