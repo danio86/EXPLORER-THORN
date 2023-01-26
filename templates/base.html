@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/clean-blog.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/clean-blog.min.css') }}" type="text/css">
     <!-- url_for function sucht in static den filename im css Unterordner und verlinked ihn hier -->
-    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" type="text/css">
     <!-- rootdir aus github! dazu brauchen wir das richtige html! -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <!-- type="text/css" This is necessary for browsers to properly 
+      identify what type of <link> element is being
+      rendered, but it's no longer required required for <script> tags, so I won't add those. -->
     <title>Hello Flask</title>
 </head>
 <body>
