@@ -1,11 +1,24 @@
 import os
 import json
-from flask import Flask, render_template
-""" Alternative zu direktem HTML
+from flask import Flask, render_template, request, flash
+if os.path.exists("env.py"):
+    import env
+""" render_template: Alternative zu direktem HTML
 hier wird das Tepmlate in HTML gerändert """
+""" request: Request is going to handle things like finding out what method
+we used, and it will also
+contain our form object when we've posted it. """
+""" flash: display some feedback to the user. wie allert
+Dafür brauchen wir a secret key, because Flask cryptographically
+signs all of the messages for security purposes.
+jetzt kann Flask  use the key to sign the messages. in env.py"""
+""" env wird nur importiert, wenn das system os eine env datai findet
+dadurch wird pycach kreiert > in ignore """
 
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
+""" um den secret key aus env zu nutzen """
 
 
 @app.route("/")
@@ -29,6 +42,8 @@ def about():
 """The angle brackets pass in data from the URL path, into view below
 wenn auf der aubut seite auf einen link geklickt wird, wird member_name
 hier eingefügt"""
+
+
 @app.route("/about/<member_name>")
 def about_member(member_name):
     member = {}
@@ -40,9 +55,16 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
+        """ print(request.form.get('name'))
+        print(request.form['email']) """
+        """if there isn't a 'name' or 'email' key on our
+        form, instead of returning 'None', it would throw an exception.
+        That's how we can access a form's data from the backend of our site."""
     return render_template("contact.html", page_title="Contact")
 
 
