@@ -1,2 +1,1 @@
- * Serving Flask app 'run'
- * Debug mode: on
+web: python run.py
